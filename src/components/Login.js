@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux'
 import { setCurrentUser } from '../actions/auth';
 import isEmpty from '../utils/isEmpty';
+import useInput from '../utils/formHandlers';
 
 const config = require("../config.json");
 
@@ -13,8 +14,8 @@ const baseUrl =  `${config["BASE_API_URL"]}`
 
 
 function Login () {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const {field: username, bind: bindUsername} = useInput('root_admin');
+    const {field: password, bind: bindPassword} = useInput('');
     const [jwtToken, setJwtToken] = useState(null);
     const [errMsg, setErrMsg] = useState(null);
 
@@ -54,21 +55,20 @@ function Login () {
         <div style={{background:'#F8FAFE'}}>
 
         <div className="bg-white shadow-lg rounded col-md-3 p-4 m-5 mx-auto">
-            <Form onSubmit={e => loginHandler(e)}>
+            <Form onSubmit={loginHandler}>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Username
-                    </Form.Label>
-                    <Form.Control type="text" name="username" value={username} 
-                    onChange={e => setUsername(e.target.value)}/>
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control type="text" name="Username" {...bindUsername}/>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <FormControl type="password" name="password" value={password} 
-                    onChange={e => setPassword(e.target.value)}/>
+                    <FormControl type="password" name="Password" {...bindPassword}/>
                 </Form.Group>
-                <Button variant="primary btn-block" type="submit">
-                    {jwtToken && <Redirect to ={{pathname:'/dashboard', }}> </Redirect> 
+                <Button variant="primary btn-block" type="submit">{
+                        jwtToken && <Redirect to ={
+                            {pathname:'/dashboard', }
+                        }> </Redirect> 
                     }
                     Login
                 </Button>
