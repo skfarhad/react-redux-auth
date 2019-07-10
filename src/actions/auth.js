@@ -10,29 +10,10 @@ export const setCurrentUser = userInfo => {
   }
 }
 
-export const deletetUser = () => {
+export const deleteCurrentUser = () => {
   return {
     type: 'DELETE_USER',
     payload: null
   }
 }
 
-
-export const logout = () => dispatch => {
-  //setAuthTokenToRequestHeader(false);
-  dispatch(deletetUser());
-}
-
-
-
-export const loginWithPassword = async(username, password) => {
-  try {
-    const res = await axios.post(`${baseUrl}user/login/password/`, {
-      username,
-      password
-    });
-    return res.data;
-  } catch (error) {
-    throw error;
-  }  
-}

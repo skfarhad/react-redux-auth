@@ -19,7 +19,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         isAuthenticated: false,
         jwt_token: null,
-        ususer_detailser: {}
+        user_details: {}
       };
     
     default:

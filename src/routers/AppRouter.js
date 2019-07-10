@@ -6,7 +6,7 @@ import createHistory from 'history/createBrowserHistory';
 import Dashboard from '../components/Dashboard';
 import ItemList from '../components/Item';
 import ItemDetail from '../components/ItemDetail';
-import NavbarGlobal from '../components/Nav';
+import NavbarGlobal from '../components/Navbar';
 
 
 import PrivateRoute from './PrivateRoute'
